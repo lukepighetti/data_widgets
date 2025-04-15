@@ -8,15 +8,6 @@ currently a lot of time is spent in flutter syncing widgets with data, usually b
 
 to provide a set of simple widgets whose sole purpose is to manipulate or respond to data
 
-## examples
-
-- TextFormField -> IntTextFormField
-- TextFormField -> DoubleTextFormField
-- TextFormField -> EmailTextFormField
-- PageView + PageController + Enum -> EnumPageView
-- Stack + Custom Animation + Enum -> EnumStack
-- ReorderableListView + Callback + Slideable -> CollectionColumn / CollectionListView
-
 ## vision
 
 ### ListView
@@ -34,7 +25,7 @@ ListView(
 )
 ```
 
-consider version of `ListView` that instead accepted a source `List`, but also added an onChange callback and allowed the user to drag-to-reorder or delete items, while also animating items being added/moved/deleted when the source `List` was mutated
+consider a version of `ListView` that instead accepts a source `List`, but also has an `onChange` callback and allowed the user to drag-to-reorder or delete items, while also animating items being added/moved/deleted when the source `List` was mutated.
 
 
 ```dart
@@ -51,6 +42,15 @@ CollectionListView(
     actions: [CollectionAction.move, CollectionAction.delete],
 )
 ```
+
+## areas to disrupt
+
+- TextFormField -> IntTextFormField
+- TextFormField -> DoubleTextFormField
+- TextFormField -> EmailTextFormField
+- PageView + PageController + Enum -> EnumPageView
+- Stack + Custom Animation + Enum -> EnumStack
+- ReorderableListView + Callback + Slideable -> CollectionColumn / CollectionListView
 
 ## contributing
 
