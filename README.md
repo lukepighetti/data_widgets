@@ -63,5 +63,6 @@ CollectionListView(
 ## contributing
 
 - all contributions to codebase or example are welcome
+- search for `// TODO:` in the codebase
 - look at SwiftUI for inspiration. they are the current leader in data driven components
 - contact me at [@luke_pighetti](https://x.com/luke_pighetti) on x for questions

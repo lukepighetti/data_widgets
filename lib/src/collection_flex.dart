@@ -88,6 +88,7 @@ class _CollectionFlexState extends State<CollectionFlex> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement delete with horizontal swipe action
+    // TODO: implement add, move, delete animations for when the source changes without human interaction
     return ReorderableListView(
       shrinkWrap: true,
       scrollDirection: widget.direction,
