@@ -1,39 +1,23 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# data_widgets
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
+## problem
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages).
--->
+currently a lot of time is spent in flutter syncing widgets with data, usually by way of controllers provided by the framework (TextEditingController, PageController, ScrollController, etc). Also, we often need to manipulate numbers or other primitive types in a TextFormField, but there is a lot of configuration involved.
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+## goal
 
-## Features
+to provide a set of simple widgets whose sole purpose is to manipulate or respond to data
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+## examples
 
-## Getting started
+- TextFormField -> IntTextFormField
+- TextFormField -> DoubleTextFormField
+- TextFormField -> EmailTextFormField
+- PageView + PageController + Enum -> EnumPageView
+- Stack + Custom Animation + Enum -> EnumStack
+- ReorderableListView + Callback + Slideable -> CollectionColumn / CollectionListView
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+## contributing
 
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
-```dart
-const like = 'sample';
-```
-
-## Additional information
-
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+- all contributions to codebase or example are welcome
+- contact me at [@luke_pighetti](https://x.com/luke_pighetti) on x for questions
