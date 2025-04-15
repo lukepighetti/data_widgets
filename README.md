@@ -33,13 +33,13 @@ final values = [1,2,3,4];
 
 CollectionListView(
     source: values,
-    builder: (context, x){
-        return ListTile(title: Text("$x"))
-    },
+    actions: [CollectionAction.move, CollectionAction.delete],
     onChange: (updatedValues){
         setState(()=>values = updatedValues);
     },
-    actions: [CollectionAction.move, CollectionAction.delete],
+    builder: (context, x){
+        return ListTile(title: Text("$x"))
+    },
 )
 ```
 
