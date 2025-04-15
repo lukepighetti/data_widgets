@@ -52,6 +52,14 @@ CollectionListView(
 - Stack + Custom Animation + Enum -> EnumStack
 - ReorderableListView + Callback + Slideable -> CollectionColumn / CollectionListView
 
+## how i solve this problem
+
+1. think of a data type, ie `List<T>`
+1. then think of how people manipulate it in ui, ie drag to reorder, swipe to delete
+1. look at flutter built in widgets to see if they can get close with a slight api change
+1. look at swiftui to see if they have solved this problem already (they almost certainly have)
+1. then make a widget that integrates allows the user to directly interact with a data type in code with a simple source: and onChange() callback
+
 ## contributing
 
 - all contributions to codebase or example are welcome
