@@ -25,7 +25,7 @@ ListView(
 )
 ```
 
-consider a version of `ListView` that instead accepts a source `List`, but also has an `onChange` callback and allowed the user to drag-to-reorder or delete items, while also animating items being added/moved/deleted when the source `List` was mutated.
+consider a version of `ListView` that instead accepts a source `List`, but also has an `onChange` callback and allows the user to drag-to-reorder or delete items, while also animating items being added/moved/deleted when the source `List` is mutated by app code.
 
 
 ```dart
@@ -58,7 +58,7 @@ CollectionListView(
 1. then think of how people manipulate it in ui, ie drag to reorder, swipe to delete
 1. look at flutter built in widgets to see if they can get close with a slight api change
 1. look at swiftui to see if they have solved this problem already (they almost certainly have)
-1. then make a widget that integrates allows the user to directly interact with a data type in code with a simple source: and onChange() callback
+1. then make a widget that allows the user to directly interact with a data type in code, typically with a simple `source:` property and `onChange()` callback
 
 ## contributing
 

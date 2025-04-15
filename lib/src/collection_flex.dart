@@ -101,7 +101,11 @@ class _CollectionFlexState extends State<CollectionFlex> {
   }
 }
 
-enum CollectionAction { move, delete }
+enum CollectionAction {
+  move,
+  @Deprecated("not yet supported")
+  delete,
+}
 
 List<T> _reorder<T>(List<T> source, int newIndex, int oldIndex) {
   if (newIndex > oldIndex) {
