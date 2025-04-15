@@ -17,7 +17,43 @@ to provide a set of simple widgets whose sole purpose is to manipulate or respon
 - Stack + Custom Animation + Enum -> EnumStack
 - ReorderableListView + Callback + Slideable -> CollectionColumn / CollectionListView
 
+## vision
+
+### ListView
+
+Imagine using `ListView` to display a list of values. The two common ways are read only and don't integrate with the `List` type.
+
+```dart
+final values = [1,2,3,4];
+
+ListView(
+    children: [
+        for(final x in values)
+            ListTile(title: Text("$x"))
+    ]
+)
+```
+
+consider version of `ListView` that instead accepted a source `List`, but also added an onChange callback and allowed the user to drag-to-reorder or delete items, while also animating items being added/moved/deleted when the source `List` was mutated
+
+
+```dart
+final values = [1,2,3,4];
+
+CollectionListView(
+    source: values,
+    builder: (context, x){
+        return ListTile(title: Text("$x"))
+    },
+    onChange: (updatedValues){
+        setState(()=>values = updatedValues);
+    },
+    actions: [CollectionAction.move, CollectionAction.delete],
+)
+```
+
 ## contributing
 
 - all contributions to codebase or example are welcome
+- look at SwiftUI for inspiration. they are the current leader in data driven components
 - contact me at [@luke_pighetti](https://x.com/luke_pighetti) on x for questions
