@@ -67,6 +67,7 @@ class CollectionFlex<T> extends StatefulWidget {
     required this.builder,
     required this.onChange,
     required this.direction,
+    this.keyBuilder,
     this.actions = const [CollectionAction.move, CollectionAction.delete],
   });
 
@@ -80,11 +81,13 @@ class CollectionFlex<T> extends StatefulWidget {
 
   final Axis direction;
 
+  final Key Function(T)? keyBuilder;
+
   @override
-  State<CollectionFlex> createState() => _CollectionFlexState();
+  State<CollectionFlex> createState() => _CollectionFlexState<T>();
 }
 
-class _CollectionFlexState extends State<CollectionFlex> {
+class _CollectionFlexState<T> extends State<CollectionFlex<T>> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement delete with horizontal swipe action
@@ -96,7 +99,15 @@ class _CollectionFlexState extends State<CollectionFlex> {
       onReorder: (oldIndex, newIndex) {
         widget.onChange(_reorder(widget.source, newIndex, oldIndex));
       },
-      children: [for (final x in widget.source) widget.builder(context, x)],
+      children: [
+        for (final x in widget.source)
+          Builder(
+            key: widget.keyBuilder?.call(x) ?? ValueKey(x),
+            builder: (context) {
+              return widget.builder(context, x);
+            },
+          ),
+      ],
     );
   }
 }
