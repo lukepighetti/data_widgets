@@ -12,7 +12,7 @@ to provide a set of simple widgets whose sole purpose is to manipulate or respon
 
 ### ListView
 
-Imagine using `ListView` to display a list of values. The two common ways are read only and don't integrate with the `List` type.
+Imagine using `ListView` to display a list of values. The two common ways are read-only and don't integrate with the `List` type.
 
 ```dart
 final values = [1,2,3,4];
