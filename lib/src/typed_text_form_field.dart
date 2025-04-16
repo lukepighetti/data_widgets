@@ -72,6 +72,7 @@ class DoubleTextFormField extends StatelessWidget {
 // TODO: StringTextFormField
 // TODO: EmailTextFormField
 // TODO: PasswordTextFormField
+// TODO: use placeholder for source until user has edited the value
 
 class TypedTextFormField<T> extends StatefulWidget {
   const TypedTextFormField({
