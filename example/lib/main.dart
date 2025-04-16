@@ -1,4 +1,5 @@
 import 'package:example/pages/collection_column_page.dart';
+import 'package:example/pages/int_text_form_field_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
       home: Builder(
         builder: (context) {
           return Scaffold(
+            appBar: AppBar(title: Text("data_widgets")),
             body: SizedBox(
               width: double.maxFinite,
               child: Column(
@@ -24,6 +26,10 @@ class MyApp extends StatelessWidget {
                   FilledButton(
                     child: Text("CollectionColumn"),
                     onPressed: () => CollectionColumnPage().push(context),
+                  ),
+                  FilledButton(
+                    child: Text("IntTextFormField"),
+                    onPressed: () => IntTextFormFieldPage().push(context),
                   ),
                 ],
               ),

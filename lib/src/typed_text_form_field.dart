@@ -4,25 +4,27 @@ import 'package:flutter/services.dart';
 class IntTextFormField extends StatelessWidget {
   const IntTextFormField({
     super.key,
-    this.initialValue,
+    required this.source,
+    required this.onChanged,
     this.autofocus = false,
     this.focusNode,
-    required this.onChange,
+    this.decoration,
   });
 
   // TODO: min/max
   final bool autofocus;
   final FocusNode? focusNode;
-  final int? initialValue;
-  final ValueChanged<int?> onChange;
+  final InputDecoration? decoration;
+  final int source;
+  final ValueChanged<int> onChanged;
 
   @override
   Widget build(BuildContext context) {
     return TypedTextFormField<int>(
+      source: source,
+      onChanged: onChanged,
       autofocus: autofocus,
       focusNode: focusNode,
-      initialValue: initialValue,
-      onChanged: onChange,
       spec: TypedTextFormFieldSpec(
         serialize: (x) => x.toString(),
         deserialize: (x) => int.tryParse(x),
@@ -36,25 +38,27 @@ class IntTextFormField extends StatelessWidget {
 class DoubleTextFormField extends StatelessWidget {
   const DoubleTextFormField({
     super.key,
-    this.initialValue,
-    required this.onChange,
+    required this.source,
+    required this.onChanged,
     this.autofocus = false,
     this.focusNode,
+    this.decoration,
   });
 
   // TODO: min, max
-  final double? initialValue;
-  final ValueChanged<double?> onChange;
+  final double source;
+  final ValueChanged<double> onChanged;
   final bool autofocus;
   final FocusNode? focusNode;
+  final InputDecoration? decoration;
 
   @override
   Widget build(BuildContext context) {
     return TypedTextFormField<double>(
+      source: source,
+      onChanged: onChanged,
       autofocus: autofocus,
       focusNode: focusNode,
-      initialValue: initialValue,
-      onChanged: onChange,
       spec: TypedTextFormFieldSpec(
         serialize: (x) => x.toString(),
         deserialize: (x) => double.tryParse(x),
@@ -65,38 +69,60 @@ class DoubleTextFormField extends StatelessWidget {
   }
 }
 
+// TODO: StringTextFormField
 // TODO: EmailTextFormField
 // TODO: PasswordTextFormField
 
-class TypedTextFormField<T> extends StatelessWidget {
+class TypedTextFormField<T> extends StatefulWidget {
   const TypedTextFormField({
     super.key,
-    required this.spec,
-    required this.autofocus,
-    this.focusNode,
-    this.initialValue,
+    required this.source,
     required this.onChanged,
+    required this.spec,
+    this.autofocus = false,
+    this.focusNode,
+    this.decoration,
   });
 
-  final T? initialValue;
+  final T source;
+  final ValueChanged<T> onChanged;
   final TypedTextFormFieldSpec<T> spec;
   final bool autofocus;
   final FocusNode? focusNode;
-  final ValueChanged<T?> onChanged;
+  final InputDecoration? decoration;
+
+  String get _value => spec.serialize(source);
+
+  @override
+  State<TypedTextFormField<T>> createState() => _TypedTextFormFieldState<T>();
+}
+
+class _TypedTextFormFieldState<T> extends State<TypedTextFormField<T>> {
+  late final controller = TextEditingController(text: widget._value);
+
+  @override
+  void didUpdateWidget(covariant TypedTextFormField<T> oldWidget) {
+    if (oldWidget._value != widget._value) {
+      controller.text = widget._value;
+    }
+
+    super.didUpdateWidget(oldWidget);
+  }
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      autofocus: autofocus,
-      focusNode: focusNode,
-      autocorrect: false,
-      initialValue: spec.serialize(initialValue),
-      inputFormatters: spec.inputFormatters,
-      decoration: InputDecoration(hintText: initialValue?.toString()),
+      controller: controller,
       onChanged: (x) {
-        onChanged(spec.deserialize(x));
+        final newValue = widget.spec.deserialize(x);
+        if (newValue != null) widget.onChanged(newValue);
       },
-      keyboardType: spec.keyboardType,
+      autofocus: widget.autofocus,
+      focusNode: widget.focusNode,
+      autocorrect: false,
+      inputFormatters: widget.spec.inputFormatters,
+      decoration: widget.decoration,
+      keyboardType: widget.spec.keyboardType,
     );
   }
 }

@@ -11,12 +11,13 @@ dependencies:
   flutter:
     sdk: flutter
 
+  collection: ^1.19.1
   cupertino_icons: ^1.0.8
   dart_mappable: ^4.5.0
+  flutter_json_view: ^1.1.5
 
   data_widgets:
     path: ../
-  collection: ^1.19.1
 
 dev_dependencies:
   flutter_test:
