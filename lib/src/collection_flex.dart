@@ -92,6 +92,7 @@ class _CollectionFlexState<T> extends State<CollectionFlex<T>> {
   Widget build(BuildContext context) {
     // TODO: implement delete with horizontal swipe action
     // TODO: implement add, move, delete animations for when the source changes without human interaction
+    // TODO: make proxyDecorator no-op and add `bool dragging` to builder
     return ReorderableListView(
       shrinkWrap: true,
       scrollDirection: widget.direction,
@@ -99,6 +100,7 @@ class _CollectionFlexState<T> extends State<CollectionFlex<T>> {
       onReorder: (oldIndex, newIndex) {
         widget.onChange(_reorder(widget.source, newIndex, oldIndex));
       },
+
       children: [
         for (final x in widget.source)
           Builder(
