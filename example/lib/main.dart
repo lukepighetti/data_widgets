@@ -1,5 +1,6 @@
 import 'package:example/pages/collection_column_page.dart';
 import 'package:example/pages/int_text_form_field_page.dart';
+import 'package:example/pages/string_text_form_field_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -30,6 +31,10 @@ class MyApp extends StatelessWidget {
                   FilledButton(
                     child: Text("IntTextFormField"),
                     onPressed: () => IntTextFormFieldPage().push(context),
+                  ),
+                  FilledButton(
+                    child: Text("StringTextFormField"),
+                    onPressed: () => StringTextFormFieldPage().push(context),
                   ),
                 ],
               ),
