@@ -104,7 +104,7 @@ class _TypedTextFormFieldState<T> extends State<TypedTextFormField<T>> {
   @override
   void didUpdateWidget(covariant TypedTextFormField<T> oldWidget) {
     if (oldWidget._value != widget._value) {
-      controller.text = widget._value;
+      _updateText(widget._value);
     }
 
     super.didUpdateWidget(oldWidget);
@@ -124,6 +124,16 @@ class _TypedTextFormFieldState<T> extends State<TypedTextFormField<T>> {
       inputFormatters: widget.spec.inputFormatters,
       decoration: widget.decoration,
       keyboardType: widget.spec.keyboardType,
+    );
+  }
+
+  void _updateText(String text) {
+    if (controller.text == text) return;
+
+    controller.value = controller.value.copyWith(
+      text: text,
+      selection: TextSelection.fromPosition(TextPosition(offset: text.length)),
+      composing: TextRange.empty,
     );
   }
 }
