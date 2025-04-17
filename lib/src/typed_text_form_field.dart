@@ -69,7 +69,43 @@ class DoubleTextFormField extends StatelessWidget {
   }
 }
 
-// TODO: StringTextFormField
+class StringTextFormField extends StatelessWidget {
+  const StringTextFormField({
+    super.key,
+    required this.source,
+    required this.onChanged,
+    this.autofocus = false,
+    this.focusNode,
+    this.decoration,
+    this.inputFormatters = const [],
+    this.keyboardType,
+  });
+
+  final bool autofocus;
+  final FocusNode? focusNode;
+  final InputDecoration? decoration;
+  final String source;
+  final ValueChanged<String> onChanged;
+  final List<TextInputFormatter> inputFormatters;
+  final TextInputType? keyboardType;
+
+  @override
+  Widget build(BuildContext context) {
+    return TypedTextFormField<String>(
+      source: source,
+      onChanged: onChanged,
+      autofocus: autofocus,
+      focusNode: focusNode,
+      spec: TypedTextFormFieldSpec(
+        serialize: (x) => x,
+        deserialize: (x) => x,
+        inputFormatters: inputFormatters,
+        keyboardType: keyboardType,
+      ),
+    );
+  }
+}
+
 // TODO: EmailTextFormField
 // TODO: PasswordTextFormField
 // TODO: use placeholder for source until user has edited the value
@@ -129,10 +165,10 @@ class _TypedTextFormFieldState<T> extends State<TypedTextFormField<T>> {
 }
 
 class TypedTextFormFieldSpec<T> {
-  final String Function(T?) serialize;
+  final String Function(T) serialize;
   final T? Function(String) deserialize;
   final List<TextInputFormatter> inputFormatters;
-  final TextInputType keyboardType;
+  final TextInputType? keyboardType;
 
   TypedTextFormFieldSpec({
     required this.serialize,
